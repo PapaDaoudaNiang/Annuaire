@@ -9,7 +9,7 @@ import com.daveNiang.annuaire.entities.Utilisateur;
 
 public interface AnnuaireDAO {
 	// --------------------------------------------------------------
-	// UTILISATEUR
+	// UTILISATEUR ----
 
 	public Utilisateur creerUtilisateur(Utilisateur utilisateur);
 
