@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/admin.xhtml">
+
+	<ui:define name="head">
+		<title>DAVE APP</title>
+	</ui:define>
+
+	<ui:define name="logo-lg">
+        DAVE APP
+    </ui:define>
+
+	<ui:define name="logo-mini">
+        DAVE
+    </ui:define>
+	<ui:define name="top-menu">
+		<ui:include src="/WEB-INF/includes/top-menu.xhtml" />
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/WEB-INF/includes/side-bar.xhtml" />
+	</ui:define>
+
+
+
+	<ui:define name="title">
+		<h2 class="align-center">
+			Welcome to <span class="text-aqua"> <i> DAVE APP</i></span>
+		</h2>
+	</ui:define>
+
+	<!-- 	<ui:define name="description">
+        A page description
+    </ui:define> -->
+
+	<ui:define  name="body">
+		<p:panel id="dynamicContent">
+			<ui:include src="#{templateController.page}" />
+		</p:panel>
+	</ui:define>
+
+
+	<ui:define name="footer">
+		<a target="_blank" href="https://github.com/adminfaces/">
+			Copyright (C) 2017 - DaveAPP </a>
+
+		<div class="pull-right hidden-xs" style="color: gray">
+			<i>1.0.0</i>
+		</div>
+	</ui:define>
+
+
+</ui:composition>
+

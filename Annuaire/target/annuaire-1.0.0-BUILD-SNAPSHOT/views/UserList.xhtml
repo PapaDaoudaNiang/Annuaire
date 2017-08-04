@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form id="form1">
+		<div class="ui-fluid">
+			<p:growl id="message" showDetail="true" />
+
+			<p:panel id="pnl" header="Liste des utilisateurs">
+				<p:dataTable id="userList" var="user"
+					value="#{utilisateurController.utilisateurs}" paginator="true"
+					paginatorPosition="bottom" reflow="true" rows="8"
+					styleClass="card no-border" rowKey="#{user.id_utilisateur}"
+					selectionMode="single"
+					selection="#{utilisateurController.selectedUtilsateur}"
+					widgetVar="contactTable">
+
+					<p:column headerText="Nom">
+						<h:outputText value="#{user.nom}" />
+					</p:column>
+
+					<p:column headerText="Prénom">
+						<h:outputText value="#{user.prenom}" />
+					</p:column>
+
+					<p:column headerText="Téléphone">
+						<h:outputText value="#{user.num_tel}" />
+					</p:column>
+
+					<p:column headerText="E-mail">
+						<h:outputText value="#{user.email}" />
+					</p:column>
+				</p:dataTable>
+
+				<p:contextMenu for="userList">
+					<p:menuitem value="Afficher" update="DetailsUser"
+						icon="fa fa-search" oncomplete="PF('DetailsUserDialog').show()" />
+
+					<p:menuitem value="Modifier" update="form2:ModifierUser"
+						icon="fa fa-edit" oncomplete="PF('ModificationUserDialog').show()" />
+
+					<p:menuitem value="Effacer" icon="fa fa-trash">
+
+					</p:menuitem>
+				</p:contextMenu>
+
+			</p:panel>
+
+			<p:dialog header="Details Utilisateurs" widgetVar="DetailsUserDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+				responsive="true" width="700" height="400" styleClass="box-primary">
+				<p:outputPanel id="DetailsUser"
+					style="text-align:center; width: 100%; height: 100%">
+					<p:panelGrid columns="2" style="width: 100%; height: 100% "
+						styleClass="ui-fluid card">
+						<p:outputLabel value="Id:" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.id_utilisateur}" />
+
+						<p:outputLabel value="Nom:" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.nom}" />
+
+						<p:outputLabel value="Prénom" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.prenom}" />
+
+						<p:outputLabel value="Téléphone" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.num_tel}" />
+
+						<p:outputLabel value="E-mail" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.email}" />
+
+						<p:outputLabel value="Profession" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.profession}" />
+
+						<p:outputLabel value="Adresse" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.adresse}" />
+
+						<p:outputLabel value="CIN" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.cin_utilisateur}" />
+
+						<p:outputLabel value="Profil" />
+						<p:outputLabel
+							value="#{utilisateurController.selectedUtilsateur.profil}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</div>
+	</h:form>
+
+	<h:form id="form2">
+		<div class="ui-fluid">
+			<p:dialog header="Modification Utilisateur"
+				widgetVar="ModificationUserDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" width="800"
+				styleClass="box-warning">
+				<p:panelGrid id="ModifierUser" columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+
+					<p:outputLabel for="userName" value="Nom" />
+					<p:inputText id="userName"
+						value="#{utilisateurController.selectedUtilsateur.nom}"
+						label="userName" />
+
+					<p:outputLabel for="userPrénom" value="Prénom" />
+					<p:inputText id="userPrénom"
+						value="#{utilisateurController.selectedUtilsateur.prenom}"
+						label="userPrénom" />
+
+					<p:outputLabel for="userTel" value="Téléphone" />
+					<p:inputText id="userTel"
+						value="#{utilisateurController.selectedUtilsateur.num_tel}"
+						label="userTel" />
+
+					<p:outputLabel for="userMail" value="E-Mail" />
+					<p:inputText id="userMail"
+						value="#{utilisateurController.selectedUtilsateur.email}"
+						label="userMail" />
+
+					<p:outputLabel for="userProfession" value="Profession" />
+					<p:inputText id="userProfession"
+						value="#{utilisateurController.selectedUtilsateur.profession}"
+						label="userProfession" />
+
+					<p:outputLabel for="userAdresse" value="Adresse" />
+					<p:inputTextarea id="userAdresse"
+						value="#{utilisateurController.selectedUtilsateur.adresse}"
+						label="userAdresse" />
+
+					<p:outputLabel for="userCIN" value="CIN" />
+					<p:inputText id="userCIN"
+						value="#{utilisateurController.selectedUtilsateur.cin_utilisateur}"
+						label="userCIN" />
+
+					<p:outputLabel for="profil" value="Profil" />
+					<p:selectOneMenu id="profil"
+						value="#{utilisateurController.selectedUtilsateur.profil}">
+						<f:selectItem
+							itemLabel="#{utilisateurController.selectedUtilsateur.profil}"
+							itemValue="#{utilisateurController.selectedUtilsateur.profil}" />
+						<p:separator />
+						<f:selectItem itemLabel="ADMINISTRATEUR"
+							itemValue="ADMINISTRATEUR" />
+						<f:selectItem itemLabel="SIMPLE-USER" itemValue="SIMPLE-USER" />
+					</p:selectOneMenu>
+
+
+					<p:commandButton icon="fa fa-save" title="Modifier"
+						styleClass="btn-warning"
+						actionListener="#{utilisateurController.updateUser()}"
+						update="ModifierUser" />
+
+				</p:panelGrid>
+			</p:dialog>
+		</div>
+	</h:form>
+
+
+</ui:composition>

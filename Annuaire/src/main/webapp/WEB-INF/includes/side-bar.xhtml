@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style type="text/css">
+@
+-moz-document url-prefix () {li span.label-danger {
+	margin-top: -20px;
+}
+}
+</style>
+
+	<ul class="sidebar-menu">
+		<li><p:link href="/index.xhtml">
+				<i class="fa fa-home"></i>
+				<span>Home</span>
+			</p:link></li>
+
+		<li class="header">CONTACTS</li>
+
+		<li class="treeview"><a href="#"> <i class="fa fa-user"></i>
+				<span>Contacts</span> <span class="pull-right-container"> <i
+					class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><p:commandLink
+						actionListener="#{templateController.loadAddContactPage()}">
+						<i class="fa fa-user"></i>
+						<span>Ajouter Contact</span>
+					</p:commandLink></li>
+				<li><p:commandLink
+						actionListener="#{templateController.loadContactListPage()}">
+						<i class="fa fa-list"></i>
+						<span>Liste des Contacts</span>
+					</p:commandLink></li>
+			</ul></li>
+		<li class="treeview"><a href="#"> <i class="fa fa-users"></i>
+				<span>Groupe de contacts</span> <span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><p:commandLink
+						actionListener="#{templateController.loadGroupPage()}">
+						<i class="fa fa-list"></i>
+						<span>Gestion des groupes</span>
+					</p:commandLink></li>
+			</ul></li>
+
+		<li class="header">UTILISATEURS</li>
+
+		<li class="treeview"><a href="#"> <i class="fa fa-user-plus"></i>
+				<span>Utilisateurs</span> <span class="pull-right-container">
+					<i class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><p:commandLink
+						actionListener="#{templateController.loadAddUserPage()}">
+						<i class="fa fa-user-plus"></i>
+						<span>Ajouter Utilisateur</span>
+					</p:commandLink></li>
+				<li><p:commandLink
+						actionListener="#{templateController.loadUserListPage()}">
+						<i class="fa fa-list"></i>
+						<span>Liste des utilisateurs</span>
+					</p:commandLink></li>
+			</ul></li>
+
+		<li class="treeview"><a href="#"> <i class="fa fa-exchange"></i>
+				<span>Profils</span> <span class="pull-right-container"> <i
+					class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><p:link href="/pages/components/accordion.xhtml">
+						<i class="fa fa-exchange"></i>
+						<span>Affecter Profil</span>
+					</p:link></li>
+				<li><p:link href="/pages/components/autocomplete.xhtml">
+						<i class="fa fa-th-list"></i>
+						<span>Liste des profils</span>
+					</p:link></li>
+			</ul></li>
+
+		<li class="header">EVENEMENTS</li>
+
+		<li class="treeview"><a href="#"> <i class="fa fa-calendar"></i>
+				<span>Evenements</span> <span class="pull-right-container"> <i
+					class="fa fa-angle-left pull-right"></i>
+			</span>
+		</a>
+			<ul class="treeview-menu">
+				<li><p:link href="/pages/components/accordion.xhtml">
+						<i class="fa fa-calendar"></i>
+						<span>Ajouter Evenement</span>
+					</p:link></li>
+				<li><p:link href="/pages/components/autocomplete.xhtml">
+						<i class="fa fa-list"></i>
+						<span>Liste des evenements</span>
+					</p:link></li>
+			</ul></li>
+
+	</ul>
+
+	<script type="text/javascript">
+        if (isMobile()) {
+            $('ul.sidebar-menu a.ui-link').click(function () {
+                $(this).prop('disabled', true);
+                showBar();
+            })
+        }
+    </script>
+
+</ui:composition>

@@ -1,0 +1,136 @@
+<h:form id="form2">
+		<!-- 		<p:growl id="message" showDetail="true" />
+ -->
+		<div class="ui-fluid">
+			<p:dialog header="Modification Contact"
+				widgetVar="ModificationGroupeDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" width="800"
+				styleClass="box-warning">
+				<p:panelGrid id="ModifierContact" columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+
+					<p:outputLabel for="contactName" value="Nom" />
+					<p:inputText id="contactName"
+						value="#{contactController.selectedContact.nom}"
+						label="contactName" />
+
+					<p:outputLabel for="contactPrenom" value="Prénom" />
+					<p:inputText id="contactPrenom"
+						value="#{contactController.selectedContact.prenom}"
+						label="contactPrenom" />
+
+					<p:outputLabel for="contactTel" value="Téléphone" />
+					<p:inputText id="contactTel"
+						value="#{contactController.selectedContact.num_tel}"
+						label="contactTel" />
+
+					<p:outputLabel for="contactMail" value="E-Mail" />
+					<p:inputText id="contactMail"
+						value="#{contactController.selectedContact.email}"
+						label="contactMail" />
+
+					<p:outputLabel for="contactProfession" value="Profession" />
+					<p:inputText id="contactProfession"
+						value="#{contactController.selectedContact.profession}"
+						label="contactProfession" />
+
+					<p:outputLabel for="contactAdresse" value="Adresse" />
+					<p:inputTextarea id="contactAdresse"
+						value="#{contactController.selectedContact.adresse}"
+						label="contactAdresse" />
+
+					<p:outputLabel for="contactDateNaissance" value="Date de naissance" />
+					<p:calendar id="contactDateNaissance"
+						value="#{contactController.selectedContact.date_naiss}"
+						navigator="true" yearRange="-100:+100" pattern="dd-MM-yyyy"
+						mask="true" showOn="both" label="contactDateNaissance" />
+
+					<p:outputLabel for="listeGroupe" value="Groupe " />
+					<p:selectOneMenu id="listeGroupe"
+						value="#{contactController.selectedGroupe}">
+						<f:selectItem
+							itemLabel="#{contactController.selectedContact.groupe.nom}"
+							itemValue="#{contactController.selectedContact.groupe.id_groupe}" />
+						<f:selectItems value="#{contactController.groupeLabels}" />
+					</p:selectOneMenu>
+
+					<p:commandButton icon="fa fa-save" title="Modifier"
+						styleClass="btn-warning"
+						actionListener="#{contactController.updateContact()}"
+						update="ModifierContact" />
+
+				</p:panelGrid>
+			</p:dialog>
+		</div>
+	</h:form>
+	
+		<!-- <p:dialog id="confirmationDialog" global="true" showEffect="fade"
+					hideEffect="fade" styleClass="box-danger"
+					widgetVar="confirmationDialog" header="Confirmation">
+
+					<p:panelGrid columns="1" columnClasses="" layout="grid"
+						styleClass="ui-fluid card">
+						<p:outputLabel
+							value="Etes vous sûr de vouloir supprimer ce contact ?" />
+
+						<p:commandButton value="Oui" type="button" styleClass="btn-danger"
+							icon="ui-icon-check" actionListener="" />
+
+						<p:commandButton value="Non" type="button"
+							styleClass="btn-success" icon="ui-icon-close"
+							onclick="PF('confirmationDialog').hide()" />
+
+					</p:panelGrid>
+				</p:dialog> -->
+				
+				
+
+				
+				
+				<p:dialog header="Details Contact" widgetVar="DetailsContactDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+				responsive="true" width="500" height="150" styleClass="box-primary">
+				<p:outputPanel id="DetailsContact"
+					style="text-align:center; width: 100%; height: 100%">
+					<p:panelGrid columns="2" style="width: 100%; height: 100% "
+						styleClass="ui-fluid card">
+						<p:outputLabel value="Id:" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.id_contact}" />
+
+						<p:outputLabel value="Nom:" />
+						<p:outputLabel value="#{contactController.selectedContact.nom}" />
+
+						<p:outputLabel value="Prénom" />
+						<p:outputLabel value="#{contactController.selectedContact.prenom}" />
+
+						<p:outputLabel value="Téléphone" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.num_tel}" />
+
+						<p:outputLabel value="E-mail" />
+						<p:outputLabel value="#{contactController.selectedContact.email}" />
+
+						<p:outputLabel value="Profession" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.profession}" />
+
+						<p:outputLabel value="Adresse" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.adresse}" />
+
+						<p:outputLabel value="Date de naissance" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.date_naiss}" />
+
+						<p:outputLabel value="Date d'ajout" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.date_ajout}" />
+
+						<p:outputLabel value="Groupe" />
+						<p:outputLabel
+							value="#{contactController.selectedContact.groupe.nom}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>

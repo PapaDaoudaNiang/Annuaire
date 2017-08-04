@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form>
+		<div class="ui-fluid">
+			<p:panel id="pnl" header="Nouveau Contact">
+				<p:growl closable="true" for="pnl" />
+				<p:panelGrid columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+
+					<p:outputLabel for="contactName" value="Nom" />
+					<p:inputText id="contactName"
+						value="#{contactController.contact.nom}" label="contactName" />
+
+					<p:outputLabel for="contactPrenom" value="Prénom" />
+					<p:inputText id="contactPrenom"
+						value="#{contactController.contact.prenom}" label="contactPrenom" />
+
+					<p:outputLabel for="contactTel" value="Téléphone" />
+					<p:inputText id="contactTel"
+						value="#{contactController.contact.num_tel}" label="contactTel" />
+
+					<p:outputLabel for="contactMail" value="E-Mail" />
+					<p:inputText id="contactMail"
+						value="#{contactController.contact.email}" label="contactMail" />
+
+					<p:outputLabel for="contactProfession" value="Profession" />
+					<p:inputText id="contactProfession"
+						value="#{contactController.contact.profession}"
+						label="contactProfession" />
+
+					<p:outputLabel for="contactAdresse" value="Adresse" />
+					<p:inputTextarea id="contactAdresse"
+						value="#{contactController.contact.adresse}"
+						label="contactAdresse" />
+
+					<p:outputLabel for="contactDateNaissance" value="Date de naissance" />
+					<p:calendar id="contactDateNaissance"
+						value="#{contactController.contact.date_naiss}" navigator="true"
+						yearRange="-100:+100" pattern="dd-MM-yyyy" mask="true"
+						showOn="both" label="contactDateNaissance" />
+
+					<p:outputLabel for="car" value="Groupe " />
+					<p:selectOneMenu id="car"
+						value="#{contactController.selectedGroupe}">
+						<f:selectItem itemLabel="Groupe" itemValue="" />
+						<f:selectItems value="#{contactController.groupeLabels}" />
+					</p:selectOneMenu>
+
+					<p:commandButton icon="fa fa-save" title="Enregistrer"
+						styleClass="btn-primary"
+						actionListener="#{contactController.saveContact()}" update="pnl" />
+
+				</p:panelGrid>
+			</p:panel>
+		</div>
+	</h:form>
+
+</ui:composition>

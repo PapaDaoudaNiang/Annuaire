@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form id="form1">
+		<div class="ui-fluid">
+			<p:growl id="message" showDetail="true" />
+			<p:panel id="addGroup" header="Nouveau Groupe" toggleable="true"
+				collapsed="true" toggleOrientation="horizontal">
+				<p:panelGrid columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+
+					<p:outputLabel for="groupName" value="Nom" />
+					<p:inputText id="groupName" value="#{groupeController.groupe.nom}"
+						label="groupName" />
+
+					<p:outputLabel for="groupDesc" value="Description" />
+					<p:inputTextarea id="groupDesc"
+						value="#{groupeController.groupe.description}" label="groupDesc" />
+
+
+					<p:commandButton icon="fa fa-save" title="Enregistrer"
+						styleClass="btn-primary"
+						actionListener="#{groupeController.saveGroup()}" update="addGroup" />
+
+				</p:panelGrid>
+			</p:panel>
+
+			<p:separator />
+
+			<p:panel id="pnl" header="Liste Des Groupes">
+				<p:dataTable id="groupList" var="groupe"
+					value="#{groupeController.groupes}" paginator="true"
+					paginatorPosition="bottom" reflow="true" rows="8"
+					styleClass="card no-border" rowKey="#{groupe.id_groupe}"
+					selectionMode="single"
+					selection="#{groupeController.selectedGroupe}">
+
+					<p:column headerText="Nom">
+						<h:outputText value="#{groupe.nom}" />
+					</p:column>
+
+					<p:column headerText="Description">
+						<h:outputText value="#{groupe.description}" />
+					</p:column>
+				</p:dataTable>
+
+				<p:contextMenu for="groupList">
+					<p:menuitem value="Afficher" update="DetailsGroupe"
+						icon="fa fa-search" oncomplete="PF('DetailsGroupeDialog').show()" />
+
+					<p:menuitem value="Modifier" update="form2:ModifierGroupe"
+						icon="fa fa-edit"
+						oncomplete="PF('ModificationGroupeDialog').show()" />
+
+					<p:menuitem value="Effacer" update="confirmationDialog"
+						icon="fa fa-trash" 
+						actionListener="#{groupeController.todelete}">
+						<!-- 						<p:confirm header="Confirmation"
+							message="Etes vous sûr de vouloir supprimer ce groupe ?"
+							icon="ui-icon-alert" /> -->
+					</p:menuitem>
+				</p:contextMenu>
+
+				<p:dialog id="confirmationDialog" global="true" showEffect="fade"
+					hideEffect="fade" styleClass="box-danger"
+					widgetVar="confirmationDialog" header="Confirmation">
+
+					<p:panelGrid columns="1" columnClasses="" layout="grid"
+						styleClass="ui-fluid card">
+						<p:outputLabel
+							value="Etes vous sûr de vouloir supprimer ce groupe ?" />
+
+						<p:commandButton value="Oui" type="button" styleClass="btn-danger"
+							icon="ui-icon-check"
+							actionListener="#{groupeController.deleteGroup()}" />
+
+						<p:commandButton value="Non" type="button"
+							styleClass="btn-success" icon="ui-icon-close"
+							onclick="PF('confirmationDialog').hide()" />
+
+					</p:panelGrid>
+				</p:dialog>
+			</p:panel>
+
+			<p:dialog header="Details Groupe" widgetVar="DetailsGroupeDialog"
+				modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+				responsive="true" width="500" height="150" styleClass="box-primary">
+				<p:outputPanel id="DetailsGroupe"
+					style="text-align:center; width: 100%; height: 100%">
+					<p:panelGrid columns="2" style="width: 100%; height: 100% "
+						styleClass="ui-fluid card">
+						<p:outputLabel value="Id:" />
+						<p:outputLabel
+							value="#{groupeController.selectedGroupe.id_groupe}" />
+
+						<p:outputLabel value="Nom:" />
+						<p:outputLabel value="#{groupeController.selectedGroupe.nom}" />
+
+						<p:outputLabel value="Description:" />
+						<p:outputLabel
+							value="#{groupeController.selectedGroupe.description}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+
+		</div>
+	</h:form>
+	<h:form id="form2">
+		<!-- 		<p:growl id="message" showDetail="true" />
+ -->
+		<div class="ui-fluid">
+			<p:dialog header="Modification Groupe"
+				widgetVar="ModificationGroupeDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" width="800"
+				styleClass="box-warning">
+				<p:panelGrid id="ModifierGroupe" columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card" style="width: 100%;">
+
+					<p:outputLabel for="groupName" value="Nom" />
+					<p:inputText id="groupName"
+						value="#{groupeController.selectedGroupe.nom}" label="groupName" />
+
+					<p:outputLabel for="groupDesc" value="Description" />
+					<p:inputTextarea id="groupDesc"
+						value="#{groupeController.selectedGroupe.description}"
+						label="groupDesc" />
+
+					<p:commandButton icon="fa fa-save" title="Modifier"
+						styleClass="btn-warning"
+						actionListener="#{groupeController.updateGroup()}"
+						update="ModifierGroupe" />
+
+				</p:panelGrid>
+			</p:dialog>
+		</div>
+	</h:form>
+
+</ui:composition>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form>
+		<div class="ui-fluid">
+			<p:panel id="pnl" header="Nouvel Utilisateur">
+				<p:growl closable="true" for="pnl" />
+				<p:panelGrid columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+
+					<p:outputLabel for="userName" value="Nom" />
+					<p:inputText id="userName"
+						value="#{utilisateurController.utilisateur.nom}" label="userName" />
+
+					<p:outputLabel for="userPrénom" value="Prénom" />
+					<p:inputText id="userPrénom"
+						value="#{utilisateurController.utilisateur.prenom}"
+						label="userPrénom" />
+
+					<p:outputLabel for="userTel" value="Téléphone" />
+					<p:inputText id="userTel"
+						value="#{utilisateurController.utilisateur.num_tel}"
+						label="userTel" />
+
+					<p:outputLabel for="userMail" value="E-Mail" />
+					<p:inputText id="userMail"
+						value="#{utilisateurController.utilisateur.email}"
+						label="userMail" />
+
+					<p:outputLabel for="userProfession" value="Profession" />
+					<p:inputText id="userProfession"
+						value="#{utilisateurController.utilisateur.profession}"
+						label="userProfession" />
+
+					<p:outputLabel for="userAdresse" value="Adresse" />
+					<p:inputTextarea id="userAdresse"
+						value="#{utilisateurController.utilisateur.adresse}"
+						label="userAdresse" />
+
+					<p:outputLabel for="userCIN" value="CIN" />
+					<p:inputText id="userCIN"
+						value="#{utilisateurController.utilisateur.cin_utilisateur}"
+						label="userCIN" />
+
+					<p:outputLabel for="profil" value="Profil" />
+					<p:selectOneMenu id="profil"
+						value="#{utilisateurController.utilisateur.profil}">
+						<f:selectItem itemLabel="Profil" itemValue="" />
+						<f:selectItem itemLabel="ADMINISTRATEUR"
+							itemValue="ADMINISTRATEUR" />
+						<f:selectItem itemLabel="SIMPLE-USER" itemValue="SIMPLE-USER" />
+					</p:selectOneMenu>
+
+
+					<p:commandButton icon="fa fa-save" title="Enregistrer"
+						styleClass="btn-primary"
+						actionListener="#{utilisateurController.saveUser()}" update="pnl" />
+
+				</p:panelGrid>
+			</p:panel>
+		</div>
+	</h:form>
+
+</ui:composition>
