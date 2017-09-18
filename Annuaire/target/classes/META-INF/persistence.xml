@@ -10,6 +10,7 @@
 		<class>com.daveNiang.annuaire.entities.Compte</class>
 		<class>com.daveNiang.annuaire.entities.Contact</class>
 		<class>com.daveNiang.annuaire.entities.Groupe</class>
+		<class>com.daveNiang.annuaire.entities.Profil</class>
 		<class>com.daveNiang.annuaire.entities.Utilisateur</class>
 		<properties>
 			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" 

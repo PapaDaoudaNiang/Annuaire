@@ -5,9 +5,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
+	<p:growl id="message" showDetail="true" />
 	<h:form id="form1">
 		<div class="ui-fluid">
-			<p:growl id="message" showDetail="true" />
 			<p:panel id="addGroup" header="Nouveau Groupe" toggleable="true"
 				collapsed="true" toggleOrientation="horizontal">
 				<p:panelGrid columns="4"
@@ -22,7 +22,6 @@
 					<p:inputTextarea id="groupDesc"
 						value="#{groupeController.groupe.description}" label="groupDesc" />
 
-
 					<p:commandButton icon="fa fa-save" title="Enregistrer"
 						styleClass="btn-primary"
 						actionListener="#{groupeController.saveGroup()}" update="addGroup" />
@@ -31,7 +30,10 @@
 			</p:panel>
 
 			<p:separator />
-
+		</div>
+	</h:form>
+	<h:form id="form3">
+		<div class="ui-fluid">
 			<p:panel id="pnl" header="Liste Des Groupes">
 				<p:dataTable id="groupList" var="groupe"
 					value="#{groupeController.groupes}" paginator="true"
@@ -57,34 +59,20 @@
 						icon="fa fa-edit"
 						oncomplete="PF('ModificationGroupeDialog').show()" />
 
-					<p:menuitem value="Effacer" update="confirmationDialog"
-						icon="fa fa-trash" 
-						actionListener="#{groupeController.todelete}">
-						<!-- 						<p:confirm header="Confirmation"
+					<p:menuitem value="Effacer" icon="fa fa-trash"
+						actionListener="#{groupeController.deleteGroup()}">
+						<p:confirm header="Confirmation"
 							message="Etes vous sûr de vouloir supprimer ce groupe ?"
-							icon="ui-icon-alert" /> -->
+							icon="ui-icon-alert" />
 					</p:menuitem>
 				</p:contextMenu>
 
-				<p:dialog id="confirmationDialog" global="true" showEffect="fade"
-					hideEffect="fade" styleClass="box-danger"
-					widgetVar="confirmationDialog" header="Confirmation">
-
-					<p:panelGrid columns="1" columnClasses="" layout="grid"
-						styleClass="ui-fluid card">
-						<p:outputLabel
-							value="Etes vous sûr de vouloir supprimer ce groupe ?" />
-
-						<p:commandButton value="Oui" type="button" styleClass="btn-danger"
-							icon="ui-icon-check"
-							actionListener="#{groupeController.deleteGroup()}" />
-
-						<p:commandButton value="Non" type="button"
-							styleClass="btn-success" icon="ui-icon-close"
-							onclick="PF('confirmationDialog').hide()" />
-
-					</p:panelGrid>
-				</p:dialog>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Oui" type="button"
+						styleClass="ui-confirmdialog-yes btn-success" icon="ui-icon-check" />
+					<p:commandButton value="Non" type="button"
+						styleClass="ui-confirmdialog-no btn-danger" icon="ui-icon-close" />
+				</p:confirmDialog>
 			</p:panel>
 
 			<p:dialog header="Details Groupe" widgetVar="DetailsGroupeDialog"
@@ -107,13 +95,9 @@
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
-
-
 		</div>
 	</h:form>
 	<h:form id="form2">
-		<!-- 		<p:growl id="message" showDetail="true" />
- -->
 		<div class="ui-fluid">
 			<p:dialog header="Modification Groupe"
 				widgetVar="ModificationGroupeDialog" modal="true" showEffect="fade"
@@ -123,19 +107,18 @@
 					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 					layout="grid" styleClass="ui-fluid card" style="width: 100%;">
 
-					<p:outputLabel for="groupName" value="Nom" />
-					<p:inputText id="groupName"
-						value="#{groupeController.selectedGroupe.nom}" label="groupName" />
+					<p:outputLabel for="mgroupName" value="Nom" />
+					<p:inputText id="mgroupName"
+						value="#{groupeController.selectedGroupe.nom}" label="mgroupName" />
 
-					<p:outputLabel for="groupDesc" value="Description" />
-					<p:inputTextarea id="groupDesc"
+					<p:outputLabel for="mgroupDesc" value="Description" />
+					<p:inputTextarea id="mgroupDesc"
 						value="#{groupeController.selectedGroupe.description}"
-						label="groupDesc" />
+						label="mgroupDesc" />
 
 					<p:commandButton icon="fa fa-save" title="Modifier"
 						styleClass="btn-warning"
-						actionListener="#{groupeController.updateGroup()}"
-						update="ModifierGroupe" />
+						actionListener="#{groupeController.updateGroup()}" />
 
 				</p:panelGrid>
 			</p:dialog>

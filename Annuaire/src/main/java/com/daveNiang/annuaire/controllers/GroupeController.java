@@ -26,14 +26,14 @@ public class GroupeController {
 	private TemplateController templateController;
 	private Utilisateur utilisateur;
 	private List<Groupe> groupes = new ArrayList<Groupe>();
-	private Groupe groupe = new Groupe();
-	private Groupe selectedGroupe = new Groupe();
-	private Groupe todelete = new Groupe();
+	private Groupe groupe;
+	private Groupe selectedGroupe;
 
 	@PostConstruct
 	public void init() {
 		utilisateur = templateController.getUtilisateur();
 		groupe = new Groupe();
+		selectedGroupe = new Groupe();
 		groupes = service.getGroupeByUser(utilisateur);
 	}
 
@@ -54,18 +54,10 @@ public class GroupeController {
 	}
 
 	public void deleteGroup() {
-		// Groupe groupe = service.leGroupe(idG);
-		// service.supprimerGroupe(todelete);
-		service.creerGroupe(todelete);
-		todelete = new Groupe();
+		service.supprimerGroupe(selectedGroupe);
 		selectedGroupe = new Groupe();
 		templateController.loadGroupPage();
 		Messages.create("SUCCES").detail("Groupe supprimé avec succés.").add();
-	}
-
-	public void setGroupTodelete() {
-		todelete = selectedGroupe;
-		deleteGroup();
 	}
 
 	public void addMessage(String summary, String detail) {
@@ -120,13 +112,4 @@ public class GroupeController {
 	public void setSelectedGroupe(Groupe selectedGroupe) {
 		this.selectedGroupe = selectedGroupe;
 	}
-
-	public Groupe getTodelete() {
-		return todelete;
-	}
-
-	public void setTodelete(Groupe todelete) {
-		this.todelete = todelete;
-	}
-
 }

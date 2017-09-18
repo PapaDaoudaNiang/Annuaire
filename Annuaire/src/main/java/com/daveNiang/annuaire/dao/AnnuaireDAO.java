@@ -5,6 +5,7 @@ import java.util.List;
 import com.daveNiang.annuaire.entities.Compte;
 import com.daveNiang.annuaire.entities.Contact;
 import com.daveNiang.annuaire.entities.Groupe;
+import com.daveNiang.annuaire.entities.Profil;
 import com.daveNiang.annuaire.entities.Utilisateur;
 
 public interface AnnuaireDAO {
@@ -64,5 +65,19 @@ public interface AnnuaireDAO {
 	public Groupe leGroupe(long idGroupe);
 
 	public List<Groupe> getGroupeByUser(Utilisateur utilisateur);
+
+	// ----------------------------------------------------------------
+	// PROFIL
+	public Profil creerProfil(Profil profil);
+
+	public void modifierProfil(Profil profil);
+
+	public List<Profil> getAllProfils();
+
+	public void supprimerProfil(Profil profil);
+
+	public Profil leProfil(String nom);
+
+	// public List<Profil> lesProfils(Long id);
 
 }

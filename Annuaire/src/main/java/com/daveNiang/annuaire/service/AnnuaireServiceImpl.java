@@ -8,6 +8,7 @@ import com.daveNiang.annuaire.dao.AnnuaireDAO;
 import com.daveNiang.annuaire.entities.Compte;
 import com.daveNiang.annuaire.entities.Contact;
 import com.daveNiang.annuaire.entities.Groupe;
+import com.daveNiang.annuaire.entities.Profil;
 import com.daveNiang.annuaire.entities.Utilisateur;
 
 @Transactional
@@ -155,6 +156,36 @@ public class AnnuaireServiceImpl implements AnnuaireService {
 	public List<Groupe> getGroupeByUser(Utilisateur utilisateur) {
 		// TODO Auto-generated method stub
 		return dao.getGroupeByUser(utilisateur);
+	}
+	
+	@Override
+	public Profil creerProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		return dao.creerProfil(profil);
+	}
+
+	@Override
+	public void modifierProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		dao.modifierProfil(profil);
+	}
+
+	@Override
+	public List<Profil> getAllProfils() {
+		// TODO Auto-generated method stub
+		return dao.getAllProfils();
+	}
+
+	@Override
+	public void supprimerProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		dao.supprimerProfil(profil);
+	}
+	
+	@Override
+	public Profil leProfil(String nom) {
+		// TODO Auto-generated method stub
+		return dao.leProfil(nom);
 	}
 
 }

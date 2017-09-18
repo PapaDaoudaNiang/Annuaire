@@ -49,11 +49,12 @@
 
 					<p:outputLabel for="profil" value="Profil" />
 					<p:selectOneMenu id="profil"
-						value="#{utilisateurController.utilisateur.profil}">
+						value="#{utilisateurController.affectedProfil}">
 						<f:selectItem itemLabel="Profil" itemValue="" />
-						<f:selectItem itemLabel="ADMINISTRATEUR"
+						<!-- <f:selectItem itemLabel="ADMINISTRATEUR"
 							itemValue="ADMINISTRATEUR" />
-						<f:selectItem itemLabel="SIMPLE-USER" itemValue="SIMPLE-USER" />
+						<f:selectItem itemLabel="SIMPLE-USER" itemValue="SIMPLE-USER" /> -->
+						<f:selectItems value="#{utilisateurController.codeProfils}"/>
 					</p:selectOneMenu>
 
 

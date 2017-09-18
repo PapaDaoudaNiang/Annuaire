@@ -2,11 +2,15 @@ package com.daveNiang.annuaire.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.daveNiang.annuaire.entities.Compte;
 import com.daveNiang.annuaire.entities.Contact;
 import com.daveNiang.annuaire.entities.Groupe;
+import com.daveNiang.annuaire.entities.Profil;
 import com.daveNiang.annuaire.entities.Utilisateur;
 
+@Service
 public interface AnnuaireService {
 
 	// --------------------------------------------------------------
@@ -65,5 +69,17 @@ public interface AnnuaireService {
 	public Groupe leGroupe(long idGroupe);
 
 	public List<Groupe> getGroupeByUser(Utilisateur utilisateur);
+	
+	// ----------------------------------------------------------------
+	// PROFIL
+	public Profil creerProfil(Profil profil);
+
+	public void modifierProfil(Profil profil);
+
+	public List<Profil> getAllProfils();
+
+	public void supprimerProfil(Profil profil);
+
+	public Profil leProfil(String nom);
 
 }

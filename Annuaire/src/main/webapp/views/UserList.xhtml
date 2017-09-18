@@ -42,11 +42,20 @@
 					<p:menuitem value="Modifier" update="form2:ModifierUser"
 						icon="fa fa-edit" oncomplete="PF('ModificationUserDialog').show()" />
 
-					<p:menuitem value="Effacer" icon="fa fa-trash">
-
+					<p:menuitem value="Effacer" icon="fa fa-trash"
+						actionListener="#{utilisateurController.deleteUser()}">
+						<p:confirm header="Confirmation"
+							message="Etes vous sûr de vouloir supprimer cet utilisateur ?"
+							icon="ui-icon-alert" />
 					</p:menuitem>
 				</p:contextMenu>
 
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Oui" type="button"
+						styleClass="ui-confirmdialog-yes btn-success" icon="ui-icon-check" />
+					<p:commandButton value="Non" type="button"
+						styleClass="ui-confirmdialog-no btn-danger" icon="ui-icon-close" />
+				</p:confirmDialog>
 			</p:panel>
 
 			<p:dialog header="Details Utilisateurs" widgetVar="DetailsUserDialog"
@@ -90,7 +99,7 @@
 
 						<p:outputLabel value="Profil" />
 						<p:outputLabel
-							value="#{utilisateurController.selectedUtilsateur.profil}" />
+							value="#{utilisateurController.selectedUtilsateur.profil.nom}" />
 					</p:panelGrid>
 				</p:outputPanel>
 			</p:dialog>
@@ -144,14 +153,12 @@
 
 					<p:outputLabel for="profil" value="Profil" />
 					<p:selectOneMenu id="profil"
-						value="#{utilisateurController.selectedUtilsateur.profil}">
+						value="#{utilisateurController.affectedProfil}">
 						<f:selectItem
-							itemLabel="#{utilisateurController.selectedUtilsateur.profil}"
-							itemValue="#{utilisateurController.selectedUtilsateur.profil}" />
+							itemLabel="#{utilisateurController.selectedUtilsateur.profil.nom}"
+							itemValue="#{utilisateurController.selectedUtilsateur.profil.nom}" />
 						<p:separator />
-						<f:selectItem itemLabel="ADMINISTRATEUR"
-							itemValue="ADMINISTRATEUR" />
-						<f:selectItem itemLabel="SIMPLE-USER" itemValue="SIMPLE-USER" />
+						<f:selectItems value="#{utilisateurController.codeProfils}" />
 					</p:selectOneMenu>
 
 

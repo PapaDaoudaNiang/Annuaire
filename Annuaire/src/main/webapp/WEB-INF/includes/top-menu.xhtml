@@ -53,14 +53,14 @@
 						<p:outputLabel
 							value="#{templateController.utilisateur.prenom} #{templateController.utilisateur.nom}" />
 						<small> <p:outputLabel
-								value="#{templateController.utilisateur.profil}" />
+								value="#{templateController.utilisateur.profil.nom}" />
 						</small>
 					</p>
 				</li>
 				<li class="user-footer"><h:form prependId="false">
 						<div class="pull-left">
 							<p:commandLink styleClass="btn btn-danger"
-								value="Changer mot de passe" update="changeMDPDialog"
+								value="Changer mot de passe" update="formz:changeMDPDialog"
 								oncomplete="PF('changeMDPDialog').show()" />
 						</div>
 						<div class="pull-right">
@@ -74,32 +74,36 @@
 
 	</ul>
 
-	<p:dialog id="changeMDPDialog" closable="true" global="true"
-		showEffect="fade" hideEffect="fade" styleClass="box-warning"
-		widgetVar="changeMDPDialog" header="Changer Mot de passe">
+	<h:form id="formz">
+		<div class="ui-fluid">
+			<p:dialog id="changeMDPDialog" closable="true" global="true"
+				showEffect="fade" hideEffect="fade" styleClass="box-warning"
+				widgetVar="changeMDPDialog" header="Changer Mot de passe" style="position:center">
 
-		<p:panelGrid columns="2" columnClasses="ui-grid-col-8,ui-grid-col-8"
-			layout="grid" styleClass="ui-fluid card">
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-8,ui-grid-col-8"
+					layout="grid" styleClass="ui-fluid card" style="width: 100%;height:100%">
 
-			<p:outputLabel for="oldPWD" value="Mot de passe actuel" />
-			<p:inputText id="oldPWD" value="#{templateController.oldPassword}"
-				label="oldPWD" type="password" />
+					<p:outputLabel for="groupName" value="Mot de passe actuel" />
+					<p:inputText id="groupName"
+						value="#{templateController.oldPassword}" label="groupName" />
 
-			<p:outputLabel for="newPWD" value="Nouveau Mot de passe" />
-			<p:inputText id="newPWD" value="#{templateController.newPassword}"
-				label="newPWD" type="password" />
+					<p:outputLabel for="groupDesc" value="Nouveau Mot de passe" />
+					<p:inputText id="groupDesc"
+						value="#{templateController.newPassword}" label="groupDesc" />
 
-			<p:outputLabel for="confirmPWD" value="Confirmation" />
-			<p:inputText id="confirmPWD"
-				value="#{templateController.confirmNewPassword}" label="confirmPWD"
-				type="password" />
+					<p:outputLabel for="groupDescé" value="Confirmation" />
+					<p:inputText id="groupDescé"
+						value="#{templateController.confirmNewPassword}"
+						label="groupDescé" />
 
-			<p:commandButton value="Valider" type="button"
-				styleClass="btn-warning" icon="ui-icon-close"
-				onclick="PF('confirmationDialog').hide()" />
+					<p:commandButton icon="fa fa-save" value="Valider"
+						styleClass="btn-warning"
+						actionListener="#{templateController.changePWD()}" />
 
-		</p:panelGrid>
-	</p:dialog>
+				</p:panelGrid>
+			</p:dialog>
+		</div>
+	</h:form>
 
 
 </ui:composition>

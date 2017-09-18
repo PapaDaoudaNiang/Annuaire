@@ -61,6 +61,7 @@ public class ContactController {
 	}
 
 	public void updateContact() {
+		selectedContact.setGroupe(LabelsGroupesMap.get(selectedGroupe));
 		service.modifierContact(selectedContact);
 		selectedContact = new Contact();
 		templateController.loadContactListPage();
@@ -68,14 +69,11 @@ public class ContactController {
 	}
 
 	public void deleteContact() {
-		// Groupe groupe = service.leGroupe(idG);
-		// service.supprimerGroupe(todelete);
-		// service.creerGroupe(todelete);
-		// todelete = new Groupe();
-		// selectedGroupe = new Groupe();
-		// templateController.loadGroupPage();
-		// Messages.create("SUCCES").detail("Groupe supprimé avec
-		// succés.").add();
+		service.supprimerContact(selectedContact);
+		selectedContact = new Contact();
+		templateController.loadContactListPage();
+		Messages.create("SUCCES").detail("Contact supprimé avec succés.").add();
+
 	}
 
 	public AnnuaireService getService() {

@@ -16,35 +16,35 @@
 					styleClass="card no-border" rowKey="#{contact.id_contact}"
 					selectionMode="single"
 					selection="#{contactController.selectedContact}"
-					emptyMessage="Pas de membre trouvé avec les critères de recherche donnés"
+					emptyMessage="Pas de contact(s) trouvé(s) avec les critères de recherche donnés"
 					filteredValue="#{contactController.filteredContacts}"
 					widgetVar="contactTable">
 
 					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Chercher sur toutes les colones :  " />
+						<p:outputPanel style="width:50%; margin:0px auto; display:block;">
 							<p:inputText id="globalFilter"
-								onkeyup="PF('contactTable').filter()" 
+								onkeyup="PF('contactTable').filter()"
 								placeholder="Entrer un critère de recherche global" />
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column filterBy="" filterMatchMode="contains" headerText="Nom">
+					<p:column filterBy="#{contact.nom}" filterStyle="display:none"
+						filterMatchMode="contains" headerText="Nom">
 						<h:outputText value="#{contact.nom}" />
 					</p:column>
 
-					<p:column filterBy="" filterMatchMode="contains"
-						headerText="Prénom">
+					<p:column filterBy="#{contact.prenom}" filterStyle="display:none"
+						filterMatchMode="contains" headerText="Prénom">
 						<h:outputText value="#{contact.prenom}" />
 					</p:column>
 
-					<p:column filterBy="" filterMatchMode="contains"
-						headerText="Téléphone">
+					<p:column filterBy="#{contact.num_tel}" filterStyle="display:none"
+						filterMatchMode="contains" headerText="Téléphone">
 						<h:outputText value="#{contact.num_tel}" />
 					</p:column>
 
-					<p:column filterBy="" filterMatchMode="contains"
-						headerText="E-mail">
+					<p:column filterBy="#{contact.email}" filterStyle="display:none"
+						filterMatchMode="contains" headerText="E-mail">
 						<h:outputText value="#{contact.email}" />
 					</p:column>
 				</p:dataTable>
@@ -57,10 +57,20 @@
 						icon="fa fa-edit"
 						oncomplete="PF('ModificationContactDialog').show()" />
 
-					<p:menuitem value="Effacer" icon="fa fa-trash">
-
+					<p:menuitem value="Effacer" icon="fa fa-trash"
+						actionListener="#{contactController.deleteContact()}">
+						<p:confirm header="Confirmation"
+							message="Etes vous sûr de vouloir supprimer ce contact ?"
+							icon="ui-icon-alert" />
 					</p:menuitem>
 				</p:contextMenu>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Oui" type="button"
+						styleClass="ui-confirmdialog-yes btn-success" icon="ui-icon-check" />
+					<p:commandButton value="Non" type="button"
+						styleClass="ui-confirmdialog-no btn-danger" icon="ui-icon-close" />
+				</p:confirmDialog>
 
 			</p:panel>
 

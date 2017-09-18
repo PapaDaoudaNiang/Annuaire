@@ -23,9 +23,26 @@
 			<url>http://repository.primefaces.org</url>
 			<layout>default</layout>
 		</repository>
+
+		<repository>
+			<id>JBoss repository</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -235,8 +252,8 @@
 			<version>6.1</version>
 		</dependency>
 
-	<!-- <dependency> <groupId>org.omnifaces</groupId> <artifactId>omnifaces</artifactId> 
-		<version>2.1</version> </dependency> -->
+		<!-- <dependency> <groupId>org.omnifaces</groupId> <artifactId>omnifaces</artifactId> 
+			<version>2.1</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.omnifaces/omnifaces -->
 		<dependency>
@@ -245,7 +262,10 @@
 			<version>2.6.3</version>
 		</dependency>
 
-
+		<!-- Jersey dependencies for web services -->
+		<!-- <dependency> <groupId>com.sun.jersey</groupId> <artifactId>jersey-server</artifactId> 
+			<version>1.8</version> </dependency> <dependency> <groupId>com.sun.jersey</groupId> 
+			<artifactId>jersey-json</artifactId> <version>1.8</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -261,6 +281,35 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- for mail -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>3.2.0.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId> 
+			<version>2.2.1</version> </dependency> -->
+		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId> 
+			<version>1.8.5</version> </dependency> -->
+
+		<!-- Quartz framework -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+
 	</dependencies>
 
 

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,10 +22,11 @@ public class Utilisateur implements Serializable {
 
 	private long id_utilisateur;
 	private long cin_utilisateur;
-	private String nom, prenom, num_tel, adresse, profession, email, profil;
+	private String nom, prenom, num_tel, adresse, profession, email;
 	private Compte compte;
 	private Set<Contact> contacts = new HashSet<Contact>();
 	private Set<Groupe> groupes = new HashSet<Groupe>();
+	private Profil profil;
 
 	@Id
 	@Column(name = "id_utilisateur")
@@ -128,13 +130,17 @@ public class Utilisateur implements Serializable {
 		this.groupes = groupes;
 	}
 
-	@Column(name = "profil")
-	public String getProfil() {
+	@ManyToOne
+	@JoinColumn(name = "id_profil")
+	public Profil getProfil() {
 		return profil;
 	}
 
-	public void setProfil(String profil) {
+	public void setProfil(Profil profil) {
 		this.profil = profil;
 	}
+
+	
+
 
 }

@@ -23,9 +23,10 @@ public class TemplateController {
 
 	private String page;
 	private Utilisateur utilisateur;
-	private String oldPassword;
-	private String newPassword;
-	private String confirmNewPassword;
+	private String oldPassword = "";
+	private String newPassword = "";
+	private String confirmNewPassword = "";
+	private String AdminVisibility;
 
 	@PostConstruct
 	public void init() {
@@ -35,6 +36,21 @@ public class TemplateController {
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
 		utilisateur = (Utilisateur) session.getAttribute("UTILISATEUR");
+
+		if (utilisateur.getProfil().getNom().equals("ADMINISTRATEUR")) {
+			AdminVisibility = "";
+		} else {
+			AdminVisibility = "none";
+		}
+
+	}
+
+	public String getAdminVisibility() {
+		return AdminVisibility;
+	}
+
+	public void setAdminVisibility(String adminVisibility) {
+		AdminVisibility = adminVisibility;
 	}
 
 	public void changePWD() {
@@ -66,8 +82,8 @@ public class TemplateController {
 	public void loadAddContactPage() {
 		this.page = "/views/addContact.xhtml";
 		reloadPage("contactController");
-		Ajax.update("dynamicContent");
-
+		RequestContext.getCurrentInstance().update("dynamicContent");
+		// Ajax.update("dynamicContent");
 	}
 
 	public void loadContactListPage() {
@@ -79,7 +95,8 @@ public class TemplateController {
 	public void loadGroupPage() {
 		this.page = "/views/Group.xhtml";
 		reloadPage("groupeController");
-		Ajax.update("dynamicContent");
+		RequestContext.getCurrentInstance().update("dynamicContent");
+		// Ajax.update("dynamicContent");
 	}
 
 	public void loadAddUserPage() {
@@ -91,6 +108,12 @@ public class TemplateController {
 	public void loadUserListPage() {
 		this.page = "/views/UserList.xhtml";
 		reloadPage("utilisateurController");
+		Ajax.update("dynamicContent");
+	}
+
+	public void loadProfilPage() {
+		this.page = "/views/Profil.xhtml";
+		reloadPage("profilController");
 		Ajax.update("dynamicContent");
 	}
 

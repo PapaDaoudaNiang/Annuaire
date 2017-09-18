@@ -1,5 +1,6 @@
 package com.daveNiang.annuaire.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import javax.persistence.TypedQuery;
 import com.daveNiang.annuaire.entities.Compte;
 import com.daveNiang.annuaire.entities.Contact;
 import com.daveNiang.annuaire.entities.Groupe;
+import com.daveNiang.annuaire.entities.Profil;
 import com.daveNiang.annuaire.entities.Utilisateur;
 
 public class AnnuaireDAOImpl implements AnnuaireDAO {
@@ -232,5 +234,65 @@ public class AnnuaireDAOImpl implements AnnuaireDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public Profil creerProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		em.persist(profil);
+		return profil;
+	}
+
+	@Override
+	public void modifierProfil(Profil profil) {
+		// TODO Auto-generated method stub
+
+		/*
+		 * Profil p = em.find(Profil.class, profil.getId_profil()); em.merge(p);
+		 */
+		em.merge(profil);
+	}
+
+	@Override
+	public List<Profil> getAllProfils() {
+		// TODO Auto-generated method stub
+		String sql = "from Profil";
+		Query query = em.createQuery(sql);
+		return query.getResultList();
+	}
+
+	@Override
+	public void supprimerProfil(Profil profil) {
+		// TODO Auto-generated method stub
+		em.find(Profil.class, profil.getId_profil());
+		em.remove(em.merge(profil));
+	}
+
+	@Override
+	public Profil leProfil(String nom) {
+		// TODO Auto-generated method stub
+		String sql = "select pr from Profil pr where pr.nom = :nom";
+		// Query query = em.createQuery(sql);
+		TypedQuery<Profil> query = em.createQuery(sql, Profil.class);
+		query.setParameter("nom", nom);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			// TODO: handle exception
+			return null;
+		}
+//		Profil p = em.find(Profil.class, code);
+//		return p;
+	}
+
+//	@Override
+//	public List<Profil> lesProfils(Long id) {
+//		// TODO Auto-generated method stub
+//		List<Profil> pr = new ArrayList<Profil>();
+//		String sql = "select pr from Affectations af left join af.utilisateur u left join af.profil pr where u.id_utilisateur = :idU";
+//		Query query = em.createQuery(sql);
+//		query.setParameter("idU", id);
+//		pr = query.getResultList();
+//		return pr;
+//	}
 
 }
